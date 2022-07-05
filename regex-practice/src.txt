@@ -1,31 +1,151 @@
--   [51:27](https://www.youtube.com/watch?v=RLvUfyLcT48&t=1780s&loop=10&start=51:27&end=52:33) What is a Learner  
-- What do you give to a learner, e.g., vision_learner? #code
--   [52:33](https://www.youtube.com/watch?v=RLvUfyLcT48&t=1780s&loop=10&start=52:33&end=53:46) TIMM: largest collection of CV models  
-- Is fastai the first and only framework implement TIMM? #surprise - Can you use any model from TIMM in your project? - Where can you learn more of TIMM?
--   [53:46](https://www.youtube.com/watch?v=RLvUfyLcT48&t=1780s&loop=10&start=53:46&end=54:51) Resnet 18: a pretrained model  
-- What is a pretrained model, Resnet18? - What did this model learn from? - What come out of this model's learning? - or what is Kaggle downloading exactly?
--   [54:51](https://www.youtube.com/watch?v=RLvUfyLcT48&t=1780s&loop=10&start=54:51&end=55:34) Fine tuning  
-- What exactly does fine tuning do to the pretrained model? #fine-tuning - What does fine-tuning want the model to learn from your dataset compared with the pretrained dataset?
--   [55:34](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=55:34&end=56:48) Prediction  
-- How to use the fine tuned model to make predictions? #code
--   [56:48](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=56:48&end=58:49) Other CV model uses: Segmentation  
-- Can we fine tune pretrained CV models to tell us the object each and every pixel on a photo belong to?
--   [58:49](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=58:49&end=01:00:31) Specialized DataLoaders  
-- Why do we need specialized DataLoaders like SegmentationDataLoaders given DataBlock?
--   [01:00:31](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:00:31&end=01:03:22) Non-CV: Tabular analysis  
-- What can tabular analysis do? Can we use a bunch of columns to predict another column of a table? - How do you download all kinds of dataset for training easily with fastai? untar_data - What are the parameters for TabularDataLoaders? - What is the best practice show_batch of fastai learned from Julia (another popular language)? - Why to use fit_one_cycle instead of fine_tune for tabular dataset?
--   [01:03:22](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:03:22&end=01:06:54) Non-CV: Collaborative filtering  
-- Can we use collaborative filtering to make movie recommendations for users? - How does recommendation system work? - Can collaborative filtering models learn from data of similar music users and recommend/predict music for new users based on how similar they are to existing users?
--   [01:04:34](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:04:34&end=01:06:53) Recommending with collaborative filtering  
-- How to download dataset for collaborative filtering models? - How to use CollabDataLoaders? - How to build a collaborative filtering model with collab_learner? - What is the best practice for setting y_range for collab_learner? #best-practice - If in theory no reason to use pretrained collab models, and fine_tune works as good as fit or fit_one_cycle, any good explanations for it? #question - How to show results of this recommendation model using show_results?
--   [01:06:53](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:06:53&end=01:10:06) Jupyter Notebook: everything you need
--   [01:10:06](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:10:06&end=01:12:33) Deep learning: its present capacity span  
-- What can Deep Learning do at the present? - What are the tasks that deep learning may not be good at?
--   [01:12:33](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:12:33&end=01:13:21) First neuralnet model in 1959  
-- Has the basic idea of deep learning changed much since 1959?
--   [01:13:21](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:13:21&end=01:14:37) Programs before machine/deep learning  
-- What did we write into programs/models before deep learning? - How to draw chart in jupyter notebook?
--   [01:14:37](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:14:37&end=01:20:25) Deep learning theory in 5 minute  
-- Can you explain DL theory in 5 min? #surprise - What is a model? - What are weights? - How do data, weights and model work together to produce result? - Why are the initial results are no good at all? - Can we design a function to tell the model how good it is doing? loss function - Then can we find a way to update/improve weights by knowing how bad/good the model is learning each time from the data? - If we can iterate the cycle multiple times, can we build a powerful model?
--   [01:20:28](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:20:28&end=01:25:08.70) Homework  
-- Run notebooks, especially the bird notebook - Create something interesting to you based on the bird notebook - Read the first chapter of the book - Be inspired by all the amazing student projects
+
+[forum thread](https://forums.fast.ai/t/walk-thru-5/96733)
+
+#### Issue of not seeing `/notebooks/` with jupyter lab
+- [00:00](https://youtu.be/gdsa2VawOeM?t=0) An issue of not able to see `notebooks/`. What does it mean by `not able to see notebooks/`? we are not entering the jupyter lab with `/notebooks/` directory
+- [01:53](https://youtu.be/gdsa2VawOeM?t=113) let's see the issue in real time by creating a new notebook/machine with the previous `pre-run.sh` we have.
+- [25:45](https://youtu.be/gdsa2VawOeM?t=1545) Now we can see the terminal of this new notebook/machine ![[no-pushd-issue.png]] 
+- Does the issue prevent us accessing `/storage/` or `/notebooks/`? No, you can access you from what we see above in Jeremy's notebook
+- So what exactly is the problem of the issue? The problem is that even though we can access `/notebooks/` directory but we can't open it with Jupyter lab, and the jupyter lab is stuck with home directory?
+- [45:51](https://youtu.be/gdsa2VawOeM?t=2751) After the above issue is dealt with `pushd ~; popd;` in `pre-run.sh`, when we open a new notebook or restart a notebook, jupyter lab open on `/notebooks/` directory and terminal start at `notebooks/` directory
+- Why do we want jupyter lab to open `notebooks/` and terminal at `notebooks/`? #question 
+
+
+#### vim
+- What is vim? What it is for? Why we need to learn it?
+-   What are key bindings?
+-   How to access the keyboard shortcuts (or key bindings) of fastai forum? `?`
+-   Are key bindings consistent in different programs?
+-   How to move up and down in a thread of the forum? `j or k`
+-   How to edit a reply or a post? `e`
+-   How to select all and copy? `cmd a` and then `cmd c`
+-   Are these keyboard shortcuts are very similar to vim?
+- [05:57](https://youtu.be/gdsa2VawOeM?t=357) How to install vim? `brew install vim` 
+-   Can we use vim in paperspace? Is it preinstalled there?
+-   How to install vim in Linux? `sudo apt install vim`
+-   How to start vim? `vim`
+-   How to get into edit mode of vim? `i` [09:15](https://youtu.be/gdsa2VawOeM?t=555)
+-   What is the default mode? command mode
+-   How do we know we are in the edit mode? see "insert" at the bottom
+-   How to go back to command mode? `esc` and see "insert" gone
+-   How to move up and down in edit mode? arrow keys
+-   How to move up and down in command mode? arrow keys or `j or k`
+-   How to move left and right in command mode? `h or l`
+-   How to open a file with vim? `vim filename` [10:53](https://youtu.be/gdsa2VawOeM?t=653)
+-   How to add comment to the first line of code? enter edit mode and hit enter to move it down a line, and do the editing with other keys learned above
+-   How to undo? in command mode, press `u`
+-   How to open a new line below the current line where the cursor is? `o`
+-   How to open a new line above the current line where the cursor is? `shift + o`
+-   How to run command in vim? in command mode type `:` for writing commands at bottom
+-   How to save a file? `:w`
+-   How to save into a new file with a different name? `:w aNewName`
+-   How to exit vim? `:q`
+-   How to combine commands like save and quit? `:wq`
+-   How to turn lower to upper case from left to right? in command mode press `~`
+-   How to do `~` command 10 times? in command mode press `10~`
+-   How to delete the current line? `dd`
+-   How to delete 5 lines from cursor and below? `5dd`
+-   How to go to the bottom of the file? `shift + g`
+-   How to delete a region from cursor to the end of the file? `d + shift + g` [15:53](https://youtu.be/gdsa2VawOeM?t=953)
+-   How to go to the the start of the file? `gg`
+-   How to delete from cursor to the start of the file? `dgg`
+-   How to go to the start and the end of a paragraph? `{` and `}`
+-   How to copy a paragraph below the cursor? put cursor at the line above the paragraph by `{`, and then press `y}` and `p`
+-   How to move right and left by word? `w` or `b`
+-   How to delete and edit on a word? command mode, cursor at the start of a word, `cw` to delete this word and enter edit mode
+-   How to delete the remaining of the paragraph and the paragraph below? `2d}`
+-   [19:32](https://youtu.be/gdsa2VawOeM?t=1172) How to copy from forum and paste in vim? `e; cmd + a; cmd + c; cmd + v;` enter vim `cmd + v; gg`
+-   After you delete a line (or any action) and you want to it again, what to do? `.`
+-   How to delete 5 words from the cursor? `5dw`
+-   How to search the next digit at the start of a line in vim? `/^\d`
+-   How to start to search? `/`
+-   How to search the start of a line? `/^`
+-   How to search the start of a line which is a digit? `/^\d`
+-   How to search again with the same search command? `n`
+-   How to delete the lines from the cursor to the next line start with digits? `d/^\d`
+-   How to do the same action again? `.`
+-   [22:17](https://youtu.be/gdsa2VawOeM?t=1337) How to make an `ex` command and apply to all lines? `:%`
+-   How to make a grep search command on all lines? `:%g/`
+-   How to search each line for a `-` at the start of a line? `:%g/^-/`
+-   How to search all the lines for a `-` at the start of each line and delete them? `:%g/^-/d`
+-   How to search all the lines with one or more empty spaces with the end of the line and delete them? `:%g/^\s*$/d`
+-   How to do search and replace to the whole file? `:%s/`
+-   How to do search the first empty space and replace with a space, `-` and another space to the whole file? `:%s/ / - /`
+-   How to search all lines and find those start with a space and a `-` and delete them? `:%g/^\s\-/d`
+-   [24:33](https://youtu.be/gdsa2VawOeM?t=1473) Why vim is so crucial to all data scientists? Can everything done above be automated by a macro in vim?
+-   How to quit without saving changes? `:q!`
+
+#### using vim `:sp` to split screen for different files
+- How would Jeremy view two files at the same time? How to split vim vertically to view two files at the same time? while we are inside `vim pre-run.sh`, we can do  `:sp /run.sh` to also view and edit `run.sh` in a splitted view
+-   How to move to different panels with vim? `ctrl + w` twice (only `cmd + w` will close tab in chrome for mac)
+
+#### Put terminal programs in background with `ctrl + z`
+-   [25:54](https://youtu.be/gdsa2VawOeM?t=1554) <mark style="background: #D2B3FFA6;">Why we don't see anything in home directory and nor can we go to</mark> `notebooks/` or `storage/`? because according to `run.sh` (this file is [actually readable](https://youtu.be/gdsa2VawOeM?t=1662) to me after I finished walkthru 6), the `pre-run.sh` file is executed when it is in the root or home directory, not in `notebooks/`; and after `pre-run.sh` is executed, jupyter lab is run immediately which is in the same directory where `pre-run.sh` leave us with. (Once you are inside home directory with jupyter lab, you can't access `/notebooks/` nor `/storage/` but only home directory. This is how I understand it so far #question )
+- What does `ctrl + z` do? it stops the program which is currently running and put it in the background [26:35](https://youtu.be/gdsa2VawOeM?t=1595)
+- How to check what is running in the background? `jobs`
+- When you are ready to get back to work on the program in the background, can you call it into the foreground? yes with `fg`
+- Can you open multiple programs or `vim fileNames` and put them all in the background? yes and you can see them with `jobs` and use `fg 1` and `fg 2` to access each of them
+
+
+#### Why use `pushd ~ ; popd;` in `pre-run.sh` script
+- [28:45](https://youtu.be/gdsa2VawOeM?t=1725) What is the solution to the file disappearing problem? by remembering the starting directory which is always `/notebooks/` and go back to it at the end of the execution of `pre-run.sh`
+-   ```pre-run.sh 4th edition
+	#!/usr/bin/env bash
+	pushd ~
+	rm -rf .local
+	ln -s /storage/cfg/.local
+	rm -rf .ssh
+	ln -s /storage/cfg/.ssh
+	popd
+
+- [32:29](https://youtu.be/gdsa2VawOeM?t=1949) Can vscode work with paperspace remotely? absolutely
+
+- How to learn vim? one bite at a time; get the attitude right and hear Jeremy's story; don't install any plugins to waste time; and type `vimtutor` to get a tutorial on vim
+
+- How to delete a character at the cursor? `x`
+
+- Radek's resources of learning vim: vim tutor in terminal, [Practical Vim: Edit Text at the Speed of Thought](https://www.amazon.com/Practical-Vim-Edit-Speed-Thought/dp/1680501275),
+
+- Where is Jeremy's configuration files? fastai [dotfiles](https://github.com/fastai/dotfiles)
+
+- [41:42](https://youtu.be/gdsa2VawOeM?t=2502) How does Jeremy customize its vim environment? Jeremy explained his `.vimrc` file 
+
+#### Git clone fastai library repo the latest version
+- [45:33](https://youtu.be/gdsa2VawOeM?t=2733) #question Where should we git clone fastai repo into? in `/notebooks/` directory as it is persistent in restarts of one machine
+
+- How to <mark style="background: #D2B3FFA6;">only git clone the latest version of the repo</mark> to save time? `git clone git@github.com/fastai/fastai.git --depth 1`
+
+#### Install `mamba` and `ctags`
+- [47:41](https://youtu.be/gdsa2VawOeM?t=2861) How to explore the entire fastai library repo? we can do it in github, vscode and vim
+
+- What is ctags? How does it work to explore the entire repo?
+
+- [50:05](https://youtu.be/gdsa2VawOeM?t=3005) <mark style="background: #D2B3FFA6;">How to instal</mark> l `mamba` with `conda` in <mark style="background: #D2B3FFA6;">paperspace</mark> ? `conda install -c defaults -c conda-forge mamba`
+
+- How to <mark style="background: #D2B3FFA6;">install ctag with mamba</mark> ? `mamba install -c conda-forge universal-ctags` as currently paperspace is not using `mamba-forge` by default #question when will paperspace start to use `mamba-forge` and `python3.9` instead of `python3.7` by default
+
+#### How to use ctags for source code
+- [53:24](https://youtu.be/gdsa2VawOeM?t=3204) Where and how are we going to use ctags? go to the folder where the files you want to explore stored and type `ctags`
+
+- How to index the current folder where the files are stored? `/notebooks/fastai/fastai/ ctags -R .` and use `ls` to check the `ctag` file created inside the current folder (`git status` does not see it, maybe because of `.gitignore`?, need to check #question)
+
+- What is inside the `ctag` file? [54:19](https://youtu.be/gdsa2VawOeM?t=3259)
+
+- How to search a function such as `ArrayMask` using ctags from terminal? `ctags -t ArrayMask`
+
+- How to search the above function within a python file? `vim filename` to open the file, `:tj ArrayMask`
+
+- How to jump from a particular class where the cursor is at to the class definition? `ctrl + ]`
+
+- How to go back to the previous tag? `ctrl + t`
+
+- How to create a ctag config file to ignore the backup file? #question
+
+- How to split the tag to view the current function where the cursor is at and the function definition you are searching for? `:stag FunctionName`
+
+- What is the [checkpoint.py](http://checkpoint.py/) file? [56:02](https://youtu.be/gdsa2VawOeM?t=3362)
+
+## Search within
+```query
+file:(walk 5) line:"ctag"
+```
