@@ -1,0 +1,31 @@
+-   [51:27](https://www.youtube.com/watch?v=RLvUfyLcT48&t=1780s&loop=10&start=51:27&end=52:33) What is a Learner  
+- What do you give to a learner, e.g., vision_learner? #code
+-   [52:33](https://www.youtube.com/watch?v=RLvUfyLcT48&t=1780s&loop=10&start=52:33&end=53:46) TIMM: largest collection of CV models  
+- Is fastai the first and only framework implement TIMM? #surprise - Can you use any model from TIMM in your project? - Where can you learn more of TIMM?
+-   [53:46](https://www.youtube.com/watch?v=RLvUfyLcT48&t=1780s&loop=10&start=53:46&end=54:51) Resnet 18: a pretrained model  
+- What is a pretrained model, Resnet18? - What did this model learn from? - What come out of this model's learning? - or what is Kaggle downloading exactly?
+-   [54:51](https://www.youtube.com/watch?v=RLvUfyLcT48&t=1780s&loop=10&start=54:51&end=55:34) Fine tuning  
+- What exactly does fine tuning do to the pretrained model? #fine-tuning - What does fine-tuning want the model to learn from your dataset compared with the pretrained dataset?
+-   [55:34](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=55:34&end=56:48) Prediction  
+- How to use the fine tuned model to make predictions? #code
+-   [56:48](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=56:48&end=58:49) Other CV model uses: Segmentation  
+- Can we fine tune pretrained CV models to tell us the object each and every pixel on a photo belong to?
+-   [58:49](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=58:49&end=01:00:31) Specialized DataLoaders  
+- Why do we need specialized DataLoaders like SegmentationDataLoaders given DataBlock?
+-   [01:00:31](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:00:31&end=01:03:22) Non-CV: Tabular analysis  
+- What can tabular analysis do? Can we use a bunch of columns to predict another column of a table? - How do you download all kinds of dataset for training easily with fastai? untar_data - What are the parameters for TabularDataLoaders? - What is the best practice show_batch of fastai learned from Julia (another popular language)? - Why to use fit_one_cycle instead of fine_tune for tabular dataset?
+-   [01:03:22](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:03:22&end=01:06:54) Non-CV: Collaborative filtering  
+- Can we use collaborative filtering to make movie recommendations for users? - How does recommendation system work? - Can collaborative filtering models learn from data of similar music users and recommend/predict music for new users based on how similar they are to existing users?
+-   [01:04:34](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:04:34&end=01:06:53) Recommending with collaborative filtering  
+- How to download dataset for collaborative filtering models? - How to use CollabDataLoaders? - How to build a collaborative filtering model with collab_learner? - What is the best practice for setting y_range for collab_learner? #best-practice - If in theory no reason to use pretrained collab models, and fine_tune works as good as fit or fit_one_cycle, any good explanations for it? #question - How to show results of this recommendation model using show_results?
+-   [01:06:53](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:06:53&end=01:10:06) Jupyter Notebook: everything you need
+-   [01:10:06](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:10:06&end=01:12:33) Deep learning: its present capacity span  
+- What can Deep Learning do at the present? - What are the tasks that deep learning may not be good at?
+-   [01:12:33](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:12:33&end=01:13:21) First neuralnet model in 1959  
+- Has the basic idea of deep learning changed much since 1959?
+-   [01:13:21](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:13:21&end=01:14:37) Programs before machine/deep learning  
+- What did we write into programs/models before deep learning? - How to draw chart in jupyter notebook?
+-   [01:14:37](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:14:37&end=01:20:25) Deep learning theory in 5 minute  
+- Can you explain DL theory in 5 min? #surprise - What is a model? - What are weights? - How do data, weights and model work together to produce result? - Why are the initial results are no good at all? - Can we design a function to tell the model how good it is doing? loss function - Then can we find a way to update/improve weights by knowing how bad/good the model is learning each time from the data? - If we can iterate the cycle multiple times, can we build a powerful model?
+-   [01:20:28](https://www.youtube.com/watch?v=RLvUfyLcT48&loop=10&start=01:20:28&end=01:25:08.70) Homework  
+- Run notebooks, especially the bird notebook - Create something interesting to you based on the bird notebook - Read the first chapter of the book - Be inspired by all the amazing student projects
