@@ -1,122 +1,46 @@
 
-#### [00:00](https://youtu.be/bk2ylRhka_8?t=0) - Setting up Paperspace - Clone fastai/paperspace-setup. If you can't use terminal in the way Jeremy did in the video, then go into Jupyter lab to use terminal. How to install with `mambai` and `pipi`? 
+#### [00:00](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=0) APL: a hintsight of a brilliant plan
+
+#### [04:18](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=258) Get ready to continue our APL learning
 
 
+#### [07:44](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=464) times sign `backtick -` and review of how to get bookmark of APL keyboard for Jupyter notebook
 
-#### [02:30](https://youtu.be/bk2ylRhka_8?t=150) - How to check whether everything is set up properly? How to update the latest fastai?  `pipi fastai` & `pipi -U fastai` .
+#### [09:32](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=572) See how (Dyadic `x`) times work and  how (monadic `x`) direction work with real numbers
 
-![[check-install-fastai.png]]
+#### [12:20](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=740) How does (monadic `x`) direction work with complex number
 
-#### How to check whether fastai is installed in the right place? 
-![[fastai-install-place.png]]
+#### [16:26](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=986) Keyboard preferences
 
-#### How to check fastai version
-![[check-fastai-version.png]]
+#### [18:53](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=1133) What is complex number in complex plane?
 
-#### [03:43 1](https://youtu.be/bk2ylRhka_8?t=223) How to install ctags and check its version and installation location?
-`mambai universal-ctags`
+#### [22:24](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=1344) what is `2 + 2i` written in APL? `2j2`? What does direction do? What is a unit circle? How to understand the direction of a complex number in terms of a unit circle
+![[direction-unit-circle.png|900]]
 
-![[ctags-version-location.png]]
-
-#### [05:00](https://youtu.be/bk2ylRhka_8?t=300) - Adding a normalization to TIMM models  
-
-#### [06:06](https://youtu.be/bk2ylRhka_8?t=366) - Fix `pre-run.sh`  by adding `popd` in the end
-
-#### [07:35](https://youtu.be/bk2ylRhka_8?t=455) - Find `Normalize` class from `data/transforms.py`. 
-
-#### How to find the `Normalize` in fastai source with `rg`?
-![[normal-rg.png]]
-
-#### How to calculate normalization for vision? Do we need to use the pretrained model's mean and std for normalization when we do fine-tuning? Why?
-
-#### [08:28](https://youtu.be/bk2ylRhka_8?t=508) Go to `vision/learner.py`, and how does `vision_learner` add normalization of the pretrained model?
-
-![[add-norm-to-learner.png|900]]
-
-#### Where does `_add_norm` get the pretrained model's stats (mean and std) from? 
-![[add-norm-add-meta.png|900]]
-![[model-meta-data.png|900]]
-
-The current `vision_learner` does not have the TIMM meta data for stats
+#### [29:51](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=1791) Learn magnitude
 
 
-#### [09:40](https://youtu.be/bk2ylRhka_8?t=580) - Search around to find the stats of TIMM, but no luck yet. 
+#### [34:34](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=2074) Learn divide sign
 
-#### vision_learner use timm as an option
-![[timm-optional.png|900]]
+#### [35:09](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=2109) How to understand [reciprocal](https://help.dyalog.com/latest/index.htm#Language/Primitive%20Functions/Reciprocal.htm) in APL?  
+![[reciprocol-apl.png]]
 
-#### [12:16](https://youtu.be/bk2ylRhka_8?t=736) How to create a TIMM model from vision_learner? 
+#### [36:48](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=2208) clean up the notebook 
 
-![[create-timm-model.png|900]]
-![[create-timm-model2.png|900]]
+#### [38:16](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=2296) Precedence
 
-#### [12:54](https://youtu.be/bk2ylRhka_8?t=774) How to search TIMM models
+#### [44:04](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=2644) learn power sign `*`: how does (monadic `*`) exponential work? how does (dyadic `*`) power work?
 
-![[search-timm-models.png]]
+#### [46:38](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=2798) What is `e`? How did Jeremy explain it step by step?
+![[explain-e.png|900]]
 
-#### [13:10](https://youtu.be/bk2ylRhka_8?t=790) - Where can we access a TIMM model's stats e.g., mean and std? `model.default_cfg()` to get TIMM model statistics  
-![[where-std-in-model.png|900]]
+#### [53:07](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=3187) What kids' reaction to Jeremy's explanations of `e`, limit and infinity? How do we understand of `e`?
 
-#### How to access the mean and std of all pretrained models of TIMM?
-![[stats-all-timm-pretrained.png]]
+#### [55:14](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=3314) Who is `e` named after? Wha are the interesting/crazy things about `e`? 
 
+#### [56:55](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=3415) How to get `e` in APL? How to use power (Dyadic)? 
 
+#### [57:59](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=3479) More discussion of the interpretation of  $e^{i\pi} + 1 = 0$ in terms of rotating on the unit circle
 
-#### [16:00](https://youtu.be/bk2ylRhka_8?t=960) - Lets go to `_add_norm()`… adding `_timm_norm()`  
-
-#### How to add the stats of a TIMM model to `Normalize` as a transform for `after_batch`? 
-![[add_norm.png|900]]
-![[add-timm-model-stats-to-dls.png|900]]
-
-#### Let's look at the `vision_learner` with TIMM model and stats kept
-![[updated-vision-learner.png|900]]
-
-#### [20:30](https://youtu.be/bk2ylRhka_8?t=1230) What would happen when we do `dls.add_tfms([tfm], 'after_batch')`? How did Jeremy find out about it step by step? 
-
-![[add_tfms1.png]]
-![[add_tfms2.png|900]]
-![[add_tfms3.png|900]]
-
-#### [23:08](https://youtu.be/bk2ylRhka_8?t=1375) Why the string version of `vision_learner` does not work? because `create_timm_model` creates a head and a body which are sequential, and `vision_learner` does not like sequentials there.
-
-
-#### [24:19](https://youtu.be/bk2ylRhka_8?t=1459) How did Jeremy step by step to fix the sequential problem of `vision_learner`? How Jeremy move onto the decision of changing how `vision_learner` work? 
-
-
-#### [28:40](https://youtu.be/bk2ylRhka_8?t=1720) - How did Jeremy step by step figure out the redesign of `vision_learner`  by changing how to `create_body`? Jeremy changed `create_body` to accept model instead of arch. Also Jeremy made `create_vision_model` to accept model inside rather than just arch.
-
-#### [32:23](https://youtu.be/bk2ylRhka_8?t=1943) - How did Jeremy apply the same design pattern for TIMM, i.e., `TimmBody` and `create_timm_model`. 
-
-#### [35:26](https://youtu.be/bk2ylRhka_8?t=2126) What about those keyword arguments we pass onto timm model? How did Jeremy take care of this `**kwargs` for timm models? 
-
-#### [38:12](https://youtu.be/bk2ylRhka_8?t=2292) - Check default config from a TIMM models  
-
-#### [39:05](https://youtu.be/bk2ylRhka_8?t=2345) - A challenge for student: Making `create_unet_model` work with TIMM  
-
-#### [40:20](https://youtu.be/bk2ylRhka_8?t=2420) - Basic idea of U-nets  
-
-#### [41:25](https://youtu.be/bk2ylRhka_8?t=2485) - Dynamic U-net  walkthru
-
-#### [48:00](https://youtu.be/bk2ylRhka_8?t=2880) - fast.ai convolutional layer `ConvLayer`  
-
-#### [49:00](https://youtu.be/bk2ylRhka_8?t=2940) - Figuring out what would need to be changed  
-
-#### [51:45](https://youtu.be/bk2ylRhka_8?t=3105) - Is anything unique about the fact that TIMM models cut the head and tail off?  
-
-#### [53:10](https://youtu.be/bk2ylRhka_8?t=3190) - The Layers Notebook doesn’t work and get it fixed.
-
-#### [54:04](https://youtu.be/bk2ylRhka_8?t=3244) - Can we still predict rice disease with the updated `vision_learner`?  
-
-#### [55:28](https://youtu.be/bk2ylRhka_8?t=3328) - Is it possible to create a layer that learns normalization?  
-
-#### [56:11](https://youtu.be/bk2ylRhka_8?t=3371) - When we fine tune, basically normalization doesn’t really matter  
-
-#### [57:25](https://youtu.be/bk2ylRhka_8?t=3445) - Question about U-net on mobile app inference  
-
-#### [59:16](https://youtu.be/bk2ylRhka_8?t=3556) - Slightly better error initially, but there is no difference as it trains  
-
-#### [01:00:37](https://youtu.be/bk2ylRhka_8?t=3637) - Any question?  
-
-#### [01:01:30](https://youtu.be/bk2ylRhka_8?t=3690) - Why normalization used to matter a lot?  
-
-#### [01:02:08](https://youtu.be/bk2ylRhka_8?t=3728) - Asking François about fine tuning Keras models
+#### [1:00:31](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=3631) How to display the operation precedence in APL? 
+![[precedence-order.png]] 
