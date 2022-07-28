@@ -1,46 +1,89 @@
+# `Optimizer.__init__`
 
-#### [00:00](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=0) APL: a hintsight of a brilliant plan
+## What does `Optimizer.__init__` do overall?
+To do the chores before optimizing the model
 
-#### [04:18](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=258) Get ready to continue our APL learning
+## What does `Optimizer.__init__` take in? 
+- `params`: weights of layers in the form of tensors
+- `cbs`: a list of callbacks/actions to be applied to weights
+- `train_bn`: apply batch normalization or not, True or False
+- `**defaults`: hyper parameters with their values in a dictionary 
+
+## What comes out of `Optimizer.__init__` ?
+- `self.cbs,self.state,self.train_bn`: create a better list or dict for `cbs, state, train_bn`.
+- `self.param_lists`: modify weights or `params` into a list of list.
+- `self.hypers`: a list of dictionaries (the number matches the number of weights items in `self.param_lists`) of hyper parameters with values.  The hyper params and their values are merged from both `**defaults` and `defaults` of `cbs`.
+- `self.param_groups`: merge weights or `self.param_lists` and hyper parameters or `self.hypers` into a list of dictionaries
+
+## How is `**default` prepared to contain all hyper params with values?
+- hyper params are from two places: 
+	- first,  `**defaults`: is a dictionary of hyperparams with values given as user inputs
+	- second, `cbs` may contain their own `defaults` (a dict of hyper params with values)
+- we will put all the `defaults` of `cbs` into a list 
+- then we merge the list above with  `**defaults` into a bigger dictionary
+- if `**defaults` match the `defaults` of `cbs`, the former will overwrite the latter, otherwise, they merge together into a longer dictionary (see examples below).
+
+![[defaults.png]]
+![[defaults8.png]]
+![[defaults9.png]]
+![[defaults10.png]]
+![[defaults0.png]]
+![[defaults1.png]]
+![[defaults2.png]]
 
 
-#### [07:44](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=464) times sign `backtick -` and review of how to get bookmark of APL keyboard for Jupyter notebook
+## How should `params` be prepared?
+- put them into a `L` list rather than a normal list
 
-#### [09:32](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=572) See how (Dyadic `x`) times work and  how (monadic `x`) direction work with real numbers
+## How should `self.param_lists` be prepared
+- After `params` is turned into `L` list 
+- `self.param_lists` is that `params` eventually turned into a list of list
+- if the first item of `params` is a list, then all the following items become lists regardless even when they are not (see examples below)
+- Code highlight: `L(L(2), L(3)) => [[2],[3]]`.
+![[self.param_lists.png]]
 
-#### [12:20](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=740) How does (monadic `x`) direction work with complex number
+## How should `self.hypers` be initialized?
+- It is initialized as a L list of empty dictionaries
+- the number of empty dictionaries is determined by the number of items inside `self.param_lists`
+- Code highlight: `range_of` gives the list of indices of `self.param_lists` so that `self.hypers` matches `self.param_lists` in numbers.
+![[self.hypers-init.png]]
 
-#### [16:26](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=986) Keyboard preferences
+## What does the final `self.hypers` look like?
+![[self.hypers.png]]
 
-#### [18:53](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=1133) What is complex number in complex plane?
+## How does `self.hypers` get prepared?
+- go through every set of weights of `self.param_lists` 
+- each set of weights get a full set of hyper params with values
+- if a hyper param has two or more values, each value will match a set of weights according to their position order
+- see example below.
+![[self.set_hypers.png]]
 
-#### [22:24](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=1344) what is `2 + 2i` written in APL? `2j2`? What does direction do? What is a unit circle? How to understand the direction of a complex number in terms of a unit circle
-![[direction-unit-circle.png|900]]
+- Code highlight: How is the above done through `self.set_hyper`, `self._set_hyper`.
+![[self.set_hyper.png]]
+![[self._set_hyper.png]]
 
-#### [29:51](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=1791) Learn magnitude
+## How should the `cbs` callbacks/actions be prepared?
+- put `cbs` into a `L` list rather than a normal list
 
 
-#### [34:34](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=2074) Learn divide sign
+## How should `self.state` the state of params (after applied with actions) be kept?
+- put `state` into a `defaultdict` rather than a normal dict
 
-#### [35:09](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=2109) How to understand [reciprocal](https://help.dyalog.com/latest/index.htm#Language/Primitive%20Functions/Reciprocal.htm) in APL?  
-![[reciprocol-apl.png]]
+## What does `self.param_groups` look like? 
+- It is basically merging both `self.param_lists` and `self.hypers`.
 
-#### [36:48](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=2208) clean up the notebook 
+![[self.param_groups-example.png]]
 
-#### [38:16](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=2296) Precedence
+- Code highlight: when you run `self.param_groups`, you are calling.
+![[self.param_groups.png]]
 
-#### [44:04](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=2644) learn power sign `*`: how does (monadic `*`) exponential work? how does (dyadic `*`) power work?
 
-#### [46:38](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=2798) What is `e`? How did Jeremy explain it step by step?
-![[explain-e.png|900]]
 
-#### [53:07](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=3187) What kids' reaction to Jeremy's explanations of `e`, limit and infinity? How do we understand of `e`?
 
-#### [55:14](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=3314) Who is `e` named after? Wha are the interesting/crazy things about `e`? 
+## How to debug/run ultra low source code
+- use `s`, `loc`, `w`, select and paste to experiment and see
+- when can't dive deeper to debug/run the ultra low source code, use `source` to get source printed and select and paste to run the ultra low source code instead
 
-#### [56:55](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=3415) How to get `e` in APL? How to use power (Dyadic)? 
+just see the image below
 
-#### [57:59](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=3479) More discussion of the interpretation of  $e^{i\pi} + 1 = 0$ in terms of rotating on the unit circle
-
-#### [1:00:31](https://youtu.be/EZrkBxFa9LQ?list=PLfYUBJiXbdtSgU6S_3l6pX-4hQYKNJZFU&t=3631) How to display the operation precedence in APL? 
-![[precedence-order.png]] 
+ 
